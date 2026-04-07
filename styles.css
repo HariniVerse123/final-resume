@@ -73,7 +73,7 @@ a {
 .hero {
   min-height: 100vh;
   /* Reduced top padding from 1.2rem to 0.5rem */
-  padding: 0.5rem 0 3rem;
+  padding: 0.2rem 0 3rem;
   display: flex;
   flex-direction: column;
   /* Change 'space-between' to 'flex-start' to pull everything up */
@@ -102,7 +102,7 @@ a {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.25fr 0.85fr;
+  grid-template-columns: 1.00fr 0.55fr;
   gap: 3rem;
   align-items: center;
   /* Reduced top padding from 4rem to 1rem to move text/image up */

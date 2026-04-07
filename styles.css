@@ -617,8 +617,8 @@ body.light-mode {
 }
 /* --- CURSOR GLOW --- */
 .cursor-glow {
-  width: 600px;
-  height: 600px;
+  width: 100px;
+  height: 100px;
   background: radial-gradient(circle, rgba(121, 242, 192, 0.08), transparent 70%);
   position: fixed;
   top: 0;

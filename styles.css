@@ -72,10 +72,12 @@ a {
 
 .hero {
   min-height: 100vh;
-  padding: 1.2rem 0 3rem;
+  /* Reduced top padding from 1.2rem to 0.5rem */
+  padding: 0.5rem 0 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* Change 'space-between' to 'flex-start' to pull everything up */
+  justify-content: flex-start; 
 }
 
 .topbar {
@@ -99,8 +101,12 @@ a {
 }
 
 .hero-grid {
-  display: flex;
-  flex-direction: column-reverse; /* This flips the order vertically */
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  /* Reduced top padding from 4rem to 1rem to move text/image up */
+  padding: 1rem 0; 
 }
 
 /* ADD THIS: This is the "secret" to keeping the image from jumping 

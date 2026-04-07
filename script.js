@@ -1,100 +1,99 @@
 // =======================
-// REVEAL ANIMATION (UPGRADED)
+// 🌙 DARK / LIGHT MODE (CLEANED)
 // =======================
+const initTheme = () => {
+    const toggle = document.createElement("button");
+    toggle.classList.add("theme-toggle");
+    // Set initial icon based on saved preference
+    const isLight = localStorage.getItem("theme") === "light";
+    toggle.innerText = isLight ? "☀️" : "🌙";
+    if (isLight) document.body.classList.add("light-mode");
+    
+    document.body.appendChild(toggle);
 
-const revealElements = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
+    toggle.addEventListener("click", () => {
+        const isNowLight = document.body.classList.toggle("light-mode");
+        localStorage.setItem("theme", isNowLight ? "light" : "dark");
+        toggle.innerText = isNowLight ? "☀️" : "🌙";
     });
-  },
-  {
-    threshold: 0.12, // smoother trigger
-  }
-);
-
-revealElements.forEach((element, index) => {
-  element.style.transitionDelay = `${Math.min(index * 60, 400)}ms`;
-  observer.observe(element);
-});
-
+};
 
 // =======================
-// 🌙 DARK / LIGHT MODE
+// ✨ CURSOR GLOW (PERFORMANCE FIX)
 // =======================
+const initCursor = () => {
+    const cursorGlow = document.createElement("div");
+    cursorGlow.classList.add("cursor-glow");
+    document.body.appendChild(cursorGlow);
 
-// create toggle button dynamically
-const toggle = document.createElement("button");
-toggle.innerText = "🌙";
-toggle.classList.add("theme-toggle");
-document.body.appendChild(toggle);
+    // Use requestAnimationFrame for smoother 60fps movement
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
 
-// load saved theme
-if (localStorage.getItem("theme") === "light") {
-  document.body.classList.add("light-mode");
-  toggle.innerText = "☀️";
-}
+    const updateCursor = () => {
+        cursorGlow.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+        requestAnimationFrame(updateCursor);
+    };
+    updateCursor();
+};
 
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
-
-  if (document.body.classList.contains("light-mode")) {
-    localStorage.setItem("theme", "light");
-    toggle.innerText = "☀️";
-  } else {
-    localStorage.setItem("theme", "dark");
-    toggle.innerText = "🌙";
-  }
-});
-
-
-// =======================
-// ✨ CURSOR GLOW EFFECT
-// =======================
-
-const cursorGlow = document.createElement("div");
-cursorGlow.classList.add("cursor-glow");
-document.body.appendChild(cursorGlow);
-
-document.addEventListener("mousemove", (e) => {
-  cursorGlow.style.left = e.clientX + "px";
-  cursorGlow.style.top = e.clientY + "px";
-});
-
-
-// =======================
-// 🌌 AMBIENT BACKGROUND MOTION
-// =======================
-
-const ambientOne = document.querySelector(".ambient-one");
-const ambientTwo = document.querySelector(".ambient-two");
-
-window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
-
-  ambientOne.style.transform = `translateY(${scrollY * 0.2}px)`;
-  ambientTwo.style.transform = `translateY(${scrollY * -0.2}px)`;
-});
 // =======================
 // ⌨️ TYPING EFFECT
 // =======================
+const initTyping = () => {
+    const text = "Tulsi Shree Harini";
+    const typingElement = document.getElementById("typing-text");
+    if (!typingElement) return;
 
-const text = "Tulsi Shree Harini";
-const typingElement = document.getElementById("typing-text");
+    let i = 0;
+    const type = () => {
+        if (i < text.length) {
+            typingElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 100);
+        }
+    };
+    type();
+};
 
-let index = 0;
+// =======================
+// 🌌 SCROLL EFFECTS (REVEAL & PARALLAX)
+// =======================
+const initScrollEffects = () => {
+    // Reveal Animation
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
 
-function typeEffect() {
-  if (index < text.length) {
-    typingElement.innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 80);
-  }
-}
+    revealElements.forEach((el, idx) => {
+        el.style.transitionDelay = `${Math.min(idx * 70, 400)}ms`;
+        observer.observe(el);
+    });
 
-typeEffect();
+    // Ambient Motion
+    const a1 = document.querySelector(".ambient-one");
+    const a2 = document.querySelector(".ambient-two");
+    
+    window.addEventListener("scroll", () => {
+        const y = window.scrollY;
+        if(a1) a1.style.transform = `translateY(${y * 0.15}px)`;
+        if(a2) a2.style.transform = `translateY(${y * -0.15}px)`;
+    }, { passive: true });
+};
+
+// Run everything when DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
+    initCursor();
+    initTyping();
+    initScrollEffects();
+});

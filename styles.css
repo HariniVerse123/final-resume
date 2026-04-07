@@ -534,3 +534,51 @@ ul {
 .project-card:hover img {
   transform: scale(1.05);
 }
+/* =======================
+🌙 THEME TOGGLE BUTTON
+======================= */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 0.6rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+
+/* =======================
+☀️ LIGHT MODE
+======================= */
+.light-mode {
+  --bg: #f5f7fb;
+  --text: #0b1a2b;
+  --muted: #5c6f82;
+  --panel: rgba(255, 255, 255, 0.8);
+  --line: rgba(0, 0, 0, 0.08);
+}
+
+
+/* =======================
+✨ CURSOR GLOW
+======================= */
+.cursor-glow {
+  position: fixed;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(121,242,192,0.25), transparent 60%);
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}

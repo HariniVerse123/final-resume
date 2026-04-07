@@ -11,7 +11,22 @@
   --warm: #ffb86b;
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
+body.light-mode {
+  --bg: #f3f7fb;
+  --bg-soft: rgba(255, 255, 255, 0.8);
+  --text: #07111f;
+  --muted: #4a5d71;
+  --line: rgba(7, 17, 31, 0.1);
+  --panel: rgba(255, 255, 255, 0.7);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
 
+/* Ensure the background gradient adapts */
+body.light-mode {
+  background: 
+    radial-gradient(circle at top left, rgba(80, 199, 255, 0.1), transparent 40%),
+    linear-gradient(160deg, #f3f7fb 0%, #e2eaf3 100%);
+}
 * {
   box-sizing: border-box;
 }

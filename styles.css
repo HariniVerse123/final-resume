@@ -99,13 +99,8 @@ a {
 }
 
 .hero-grid {
-  display: grid;
-  /* This ensures the 1.25 to 0.85 ratio stays locked */
-  grid-template-columns: 1.25fr 0.85fr;
-  gap: 3rem;
-  /* FIX: Changed 'end' to 'center' to prevent the vertical stacking bug */
-  align-items: center;
-  padding: 4rem 0 1rem;
+  display: flex;
+  flex-direction: column-reverse; /* This flips the order vertically */
 }
 
 /* ADD THIS: This is the "secret" to keeping the image from jumping 

@@ -582,3 +582,16 @@ ul {
   transform: translate(-50%, -50%);
   z-index: 0;
 }
+/* =======================
+🧲 SCROLL SNAP
+======================= */
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+.section,
+.hero,
+.footer {
+  scroll-snap-align: start;
+}

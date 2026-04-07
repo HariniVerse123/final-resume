@@ -12,20 +12,23 @@
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
 body.light-mode {
-  --bg: #f3f7fb;
-  --bg-soft: rgba(255, 255, 255, 0.8);
-  --text: #07111f;
-  --muted: #4a5d71;
-  --line: rgba(7, 17, 31, 0.1);
-  --panel: rgba(255, 255, 255, 0.7);
-  --shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-}
+  /* Soft Slate background - much cleaner than pure white */
+  --bg: #f8fafc; 
+  --bg-soft: #ffffff;
+  --panel: #ffffff;
+  
+  /* Deep Navy-Grey text - looks more expensive/professional */
+  --text: #1e293b; 
+  --muted: #64748b;
+  
+  /* Subtle lines and shadows */
+  --line: rgba(0, 0, 0, 0.06);
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 
-/* Ensure the background gradient adapts */
-body.light-mode {
+  /* Clean, airy background gradient */
   background: 
-    radial-gradient(circle at top left, rgba(80, 199, 255, 0.1), transparent 40%),
-    linear-gradient(160deg, #f3f7fb 0%, #e2eaf3 100%);
+    radial-gradient(circle at top right, rgba(121, 242, 192, 0.1), transparent 40%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }
 * {
   box-sizing: border-box;

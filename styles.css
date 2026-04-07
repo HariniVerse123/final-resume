@@ -100,12 +100,19 @@ a {
 
 .hero-grid {
   display: grid;
+  /* This ensures the 1.25 to 0.85 ratio stays locked */
   grid-template-columns: 1.25fr 0.85fr;
-  gap: 2rem;
-  align-items: end;
+  gap: 3rem;
+  /* FIX: Changed 'end' to 'center' to prevent the vertical stacking bug */
+  align-items: center;
   padding: 4rem 0 1rem;
 }
 
+/* ADD THIS: This is the "secret" to keeping the image from jumping 
+   below the text when the screen gets slightly smaller. */
+.hero-copy {
+  min-width: 0;
+}
 .eyebrow {
   color: var(--accent);
   letter-spacing: 0.12em;

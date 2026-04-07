@@ -595,3 +595,17 @@ html {
 .footer {
   scroll-snap-align: start;
 }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-card {
+  max-width: 320px;
+  justify-self: end;
+}

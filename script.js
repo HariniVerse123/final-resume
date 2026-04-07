@@ -1,32 +1,39 @@
 // =======================
-// 🌙 DARK / LIGHT MODE (CLEANED)
+// 🌙 DARK / LIGHT MODE (UPDATED)
 // =======================
 const initTheme = () => {
-    const toggle = document.createElement("button");
-    toggle.classList.add("theme-toggle");
-    // Set initial icon based on saved preference
-    const isLight = localStorage.getItem("theme") === "light";
-    toggle.innerText = isLight ? "☀️" : "🌙";
-    if (isLight) document.body.classList.add("light-mode");
-    
-    document.body.appendChild(toggle);
+    // Connect to the button you already have in your HTML
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
 
-    toggle.addEventListener("click", () => {
-        const isNowLight = document.body.classList.toggle("light-mode");
-        localStorage.setItem("theme", isNowLight ? "light" : "dark");
-        toggle.innerText = isNowLight ? "☀️" : "🌙";
+    // 1. Check for saved user preference on page load
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-mode');
+    }
+
+    // 2. Listen for the click
+    themeToggle.addEventListener('click', () => {
+        const isNowLight = document.body.classList.toggle('light-mode');
+        
+        // 3. Save the preference so it stays on refresh
+        localStorage.setItem('theme', isNowLight ? 'light' : 'dark');
+        
+        // Optional: Animate the button icon slightly on click
+        themeToggle.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            themeToggle.style.transform = 'scale(1.1)';
+        }, 100);
     });
 };
 
 // =======================
-// ✨ CURSOR GLOW (PERFORMANCE FIX)
+// ✨ CURSOR GLOW
 // =======================
 const initCursor = () => {
     const cursorGlow = document.createElement("div");
     cursorGlow.classList.add("cursor-glow");
     document.body.appendChild(cursorGlow);
 
-    // Use requestAnimationFrame for smoother 60fps movement
     let mouseX = 0, mouseY = 0;
     document.addEventListener("mousemove", (e) => {
         mouseX = e.clientX;
@@ -48,6 +55,7 @@ const initTyping = () => {
     const typingElement = document.getElementById("typing-text");
     if (!typingElement) return;
 
+    typingElement.textContent = ""; // Clear existing text before starting
     let i = 0;
     const type = () => {
         if (i < text.length) {
@@ -60,10 +68,9 @@ const initTyping = () => {
 };
 
 // =======================
-// 🌌 SCROLL EFFECTS (REVEAL & PARALLAX)
+// 🌌 SCROLL EFFECTS
 // =======================
 const initScrollEffects = () => {
-    // Reveal Animation
     const revealElements = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -79,7 +86,6 @@ const initScrollEffects = () => {
         observer.observe(el);
     });
 
-    // Ambient Motion
     const a1 = document.querySelector(".ambient-one");
     const a2 = document.querySelector(".ambient-two");
     
@@ -90,7 +96,7 @@ const initScrollEffects = () => {
     }, { passive: true });
 };
 
-// Run everything when DOM is ready
+// Initialize everything
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     initCursor();
